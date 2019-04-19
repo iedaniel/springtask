@@ -1,0 +1,55 @@
+<html>
+<body>
+<div>
+    <p> Добавить нового пользователя: </p>
+    <form method="post" action="/create-user">
+        <input type="text" name="name" placeholder="Введите имя пользователя" />
+        <input type="text" name="surname" placeholder="Введите фамилию пользователя" />
+        <input type="date" name="birth" placeholder="Введите дату рождения" />
+        <input type="text" name="email" placeholder="Введите почту пользователя" />
+        <input type="password" name="password" placeholder="Введите пароль пользователя" />
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+
+<div>
+    <p>Текущий список пользователей:</p>
+    <div>
+        <form method="get">
+            <input type="text" placeholder="email" name="email" />
+            <button type="submit">Найти пользователя</button>
+        </form>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>Имя</td>
+                <td>Фамилия</td>
+                <td>Дата рождения</td>
+                <td>Email</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {{#users}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{surname}}</td>
+                <td>{{birth}}</td>
+                <td>{{email}}</td>
+                <td>
+                    <form method="post" action="/delete-user">
+                        <input type="hidden" value="{{id}}" name="id">
+                        <button type="submit">Удалить</button>
+                    </form>
+
+
+                </td>
+            </tr>
+            {{/users}}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
